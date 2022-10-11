@@ -3,14 +3,14 @@ const exp = require('express'),
     dotenv = require('dotenv').config(),
     cors = require('cors'),
     app = exp(),
-    db = require('./config/database'),
+    { db, DataTypes } = require('./config/database'),
     PORT = process.env.PORT || 8000;
 
 // DB connection
 
 try {
     db.authenticate();
-    console.log('Connected')
+    success({ message: `Connected to the DB`, badge: true })
 } catch (err) {
     error({ message: `Error connection DB ${err.message}`, badge: true })
 }

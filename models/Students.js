@@ -1,35 +1,38 @@
-const db = require('../config/database');
+const { db, DataTypes } = require('../config/database');
 
 const Students = db.define('students', {
     id: {
-        type: DataType.INTERGE,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     firstName: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         required: true
     },
     name: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         required: true
     },
     classe: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         required: true
     },
     sexe: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         required: true
     },
     emailParents: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: true,
     }
+}, {
+    db,
+    modelName: 'students'
 });
 
 Students.sync();

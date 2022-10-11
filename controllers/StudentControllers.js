@@ -1,12 +1,50 @@
-const getStudents = (req, res) => {
-    res.send('Students');
+// DB connection
+const db = require('../config/database'),
+    Students = require('../models/Students');
+
+/**
+ * 
+ * @param {Null} req 
+ * @param {getting students} res 
+ */
+
+const getStudents = async(req, res) => {
+    const AllStudents = await Students.findAll();
+    res.json(AllStudents);
 }
 
-const getStudent = (req, res) => {
-    res.send('Student');
+const getStudent = async(req, res) => {
+    let Id = req.params.id;
+    const student = await Students.findOne({ where: { id: Id } });
+    res.json(student);
 }
 
-const postStudent = (req, res) => {
+const postStudent = async(req, res) => {
+    const {
+        firstName,
+        name,
+        sexe,
+        classe,
+        emailParents
+    } = req.body
+
+    if (firstName === '' || firstName === undefined || name === '' || name === undefined || sexe === '' || sexe === undefined || classe === undefined || classe === '') {
+        res.status(500).json('Field in all inputs')
+    } else {
+        let email = '';
+
+        if (emailParents !== '' || emailParents !== undefined) {
+            email = emailParents
+        }
+        const SaveStudent = Students.build({
+            firstName,
+            name,
+            sexe,
+            classe,
+            email
+        });
+        await SaveStudent.save()
+    }
     res.send('Post Student');
 }
 
