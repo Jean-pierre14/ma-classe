@@ -19,10 +19,19 @@ try {
 
 app.use(cors());
 
-// Getting the /
-app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to my RestFull APIs' })
-});
+// Views engine ejs
+app.set('view engine', 'ejs');
+
+// Body-parser 
+app.use(exp.urlencoded({ extended: false }));
+
+
+/**
+ * The Views endpoint
+ * 
+ */
+
+app.use('/', require('./routers/viewsRouter'));
 
 /**
  * Student APIs

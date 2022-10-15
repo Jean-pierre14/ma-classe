@@ -5,52 +5,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>RestFull APIs</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
 
-    <form action="" method="post">
-        <div class="form-group">
-            <label for="fname">First name</label>
-            <input type="text" name="firstName" id="fname" placeholder="First name" class="form-control">
+    <div class="container">
+        <div class="row py-3">
+            <div class="col-md-4">
+                <div class="card card-body shadow-sm">
+                    <form action="/students" method="post">
+
+                        <div class="form-group">
+                            <label for="fname">First name</label>
+                            <input type="text" name="firstName" id="fname" placeholder="First name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" placeholder="Name" id="name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sexe">Sexe</label>
+                            <select name="sexe" id="sex" name="sexe" class="form-control">
+                                <option value="">-- Select --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="classe">Classe</label>
+                            <select name="classe" id="classe" name="classe" class="form-control">
+                                <option value="">-- Select --</option>
+                                <option value="P1">P1</option>
+                                <option value="P2">P2</option>
+                                <option value="P3">P3</option>
+                                <option value="P4">P4</option>
+                                <option value="P5">P5</option>
+                                <option value="P6">P6</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Parents</label>
+                            <input type="email" name="emailParents" id="email" placeholder="Email parent" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="subtmit" class="btn btn-block btn-primary">Register</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
         </div>
-
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" placeholder="Name" id="name" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="sexe">Sexe</label>
-            <select name="sexe" id="sex" name="sexe" class="form-control">
-                <option value="">-- Select --</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="classe">Classe</label>
-            <select name="classe" id="classe" name="classe" class="form-group">
-                <option value="">-- Select --</option>
-                <option value="P1">P1</option>
-                <option value="P2">P2</option>
-                <option value="P3">P3</option>
-                <option value="P4">P4</option>
-                <option value="P5">P5</option>
-                <option value="P6">P6</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email Parents</label>
-            <input type="email" name="emailParents" id="email" placeholder="Email parent" class="form-control">
-        </div>
-
-
-
-    </form>
+    </div>
 
 </body>
 
