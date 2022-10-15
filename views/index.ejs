@@ -1,81 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./header')%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestFull APIs</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <%- include('./Navbar/navbar')%>
 
-    <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="row py-3">
-            <div class="col-md-4">
-                <div class="card card-body shadow-sm">
-                    <form action="/students" method="post">
-
-                        <div class="form-group">
-                            <label for="fname">First name</label>
-                            <input type="text" name="firstName" id="fname" placeholder="First name" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" placeholder="Name" id="name" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="sexe">Sexe</label>
-                            <select name="sexe" id="sex" name="sexe" class="form-control">
-                                <option value="">-- Select --</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="classe">Classe</label>
-                            <select name="classe" id="classe" name="classe" class="form-control">
-                                <option value="">-- Select --</option>
-                                <option value="P1">P1</option>
-                                <option value="P2">P2</option>
-                                <option value="P3">P3</option>
-                                <option value="P4">P4</option>
-                                <option value="P5">P5</option>
-                                <option value="P6">P6</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Parents</label>
-                            <input type="email" name="emailParents" id="email" placeholder="Email parent" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <button type="subtmit" class="btn btn-block btn-primary">Register</button>
-                        </div>
-
-
-                    </form>
+        <div class="container m-auto py-3">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card card-body shadow-sm">
+                        <h2>Dashboard</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis impedit, a beatae architecto maxime autem molestias laborum mollitia harum qui deleniti minus magnam ratione ipsum quidem similique dolores odit veritatis sunt. Nobis beatae magnam totam
+                            error maxime facere odio incidunt quaerat tempora, commodi quia velit, libero suscipit ipsa, quisquam laboriosam ad voluptatibus ipsam? Similique in quo eius cum dolorem! Sit deserunt asperiores maiores doloremque earum expedita
+                            saepe dolorem repellendus cumque magnam itaque delectus soluta praesentium exercitationem corrupti rem qui totam repellat sunt eaque illum, veritatis ipsum beatae nam! Dolorum maxime magnam aliquid praesentium placeat possimus,
+                            veritatis et at ipsam eveniet saepe aliquam iusto repellat quisquam quis numquam error beatae quod unde blanditiis. Cupiditate, perspiciatis ab, molestiae placeat quidem et quam non fugit iusto neque modi vel? Temporibus hic
+                            dolorem, vel ipsum qui laudantium amet, ipsam voluptatibus debitis in voluptates quisquam explicabo consequuntur quae doloribus laboriosam adipisci porro expedita! Suscipit ratione perferendis natus eligendi repudiandae molestias
+                            dolore omnis debitis aliquam nesciunt est dolores tempore, illum, et modi vitae dolorum alias sit labore! Incidunt velit maiores eum cumque iure reprehenderit ut, natus cum rem accusantium aut, provident vero magni non dicta
+                            voluptatum, doloremque esse quis exercitationem veniam culpa ad distinctio. Nihil, nobis?
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6"></div>
         </div>
-    </div>
 
-</body>
-
-</html>
+        <%- include('./footer')%>

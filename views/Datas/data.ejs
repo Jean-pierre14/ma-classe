@@ -1,0 +1,56 @@
+<%- include('../header')%>
+    <%- include('../Navbar/navbar')%>
+
+        <div class="container m-auto">
+            <div class="row justify-content-center my-3">
+                <div class="col-md-8">
+                    <div class="card card-body shadow-sm">
+                        <form action="" method="post">
+                            <input type="search" name="search" id="search" placeholder="Search..." class="form-control">
+                        </form>
+                        <h3>APIs...</h3>
+                        <div id="results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let resutlDom = document.querySelector('#results');
+
+            let output = '';
+
+
+            fetch('http://localhost:7000/students')
+                .then(res => res.json())
+                .then(data => {
+                    output += `
+                        <table class="table table-stripe table-sm">
+                            <thead>
+                                <tr>
+                                    <th>First name</th>
+                                    <th>Name</th>
+                                    <th>Classe</th>
+                                    <th>Sexe</th>
+                                    <th>Actions</th>
+                                </tr>    
+                            </thead>
+                            <tbody>
+                        `
+                    data.forEach(item => {
+                        output += `
+                        <tr>
+                            <td></td>    
+                        </tr>
+                        `
+                    });
+                    output += `
+                        </tbody>
+                    </table>`
+                })
+                .catch(err => {
+                    resutlDom.innerHTML = `<p class="alert alert-warning">The network is down</p>`
+                })
+        </script>
+
+        <%- include('../footer')%>

@@ -14,12 +14,17 @@ const getStudents = async(req, res) => {
 }
 
 const getStudent = async(req, res) => {
+
     let Id = req.params.id;
+
     const student = await Students.findOne({ where: { id: Id } });
+
     res.json(student);
+
 }
 
 const postStudent = async(req, res) => {
+
     const {
         firstName,
         name,
@@ -28,14 +33,16 @@ const postStudent = async(req, res) => {
         emailParents
     } = req.body
 
-    if (firstName === '' || firstName === undefined || name === '' || name === undefined || sexe === '' || sexe === undefined || classe === undefined || classe === '') {
-        res.status(500).json('Field in all inputs')
-    } else {
-        let email = '';
+    // console.log(req.body);
 
-        if (emailParents !== '' || emailParents !== undefined) {
-            email = emailParents
-        }
+    if (firstName === '' || firstName === undefined || name === '' || name === undefined || sexe === '' || sexe === undefined || classe === undefined || classe === '') {
+
+        res.status(500).json('Field in all inputs')
+
+    } else {
+
+        let email = emailParents;
+
         const SaveStudent = Students.build({
             firstName,
             name,
@@ -43,13 +50,18 @@ const postStudent = async(req, res) => {
             classe,
             email
         });
+
         await SaveStudent.save()
     }
-    res.send('Post Student');
+
+    res.redirect('/eleve');
+
 }
 
 const updateStudent = (req, res) => {
+
     res.send('Update Student');
+
 }
 
 const deleteStudent = (req, res) => {
