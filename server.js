@@ -1,6 +1,8 @@
 const exp = require('express'),
     { success, error } = require('consola'),
     dotenv = require('dotenv').config(),
+    session = require('express-session'),
+    flash = require('connect-flash'),
     cors = require('cors'),
     app = exp(),
     { db, DataTypes } = require('./config/database'),
@@ -15,9 +17,27 @@ try {
     error({ message: `Error connection DB ${err.message}`, badge: true })
 }
 
+// Express-session config
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: ''
+}))
+
 // Cors config
 
 app.use(cors());
+
+// Flash message
+
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    next()
+})
 
 // Views engine ejs
 app.set('view engine', 'ejs');

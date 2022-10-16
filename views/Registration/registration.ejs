@@ -6,29 +6,31 @@
                 <div class="col-md-8">
                     <div class="card card-body shadow-sm">
                         <h3>Registration</h3>
-                        <form action="/students" method="post" class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="fname">First name</label>
-                                <input type="text" name="firstName" id="fname" placeholder="First name" class="form-control">
-                            </div>
+                        <%- include('../errors/message')%>
+                            <form action="/students" method="post" class="form-row justify-content-center">
+                                <div class="form-group col-md-6">
+                                    <label for="fname">First name</label>
+                                    <input type="text" name="firstName" id="fname" value="<%= typeof firstName != 'undefined' ? firstName: '' %>" placeholder="First name" class="form-control">
+                                </div>
 
-                            <div class="form-group col-md-6">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" placeholder="Name" id="name" class="form-control">
-                            </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" value="<%= typeof name != 'undefined' ? name: '' %>" placeholder="Name" id="name" class="form-control">
+                                </div>
 
-                            <div class="form-group col-md-4">
-                                <label for="sexe">Sexe</label>
-                                <select name="sexe" id="sex" name="sexe" class="form-control">
+                                <div class="form-group col-md-4">
+                                    <label for="sexe">Sexe</label>
+                                    <select name="sexe" id="sex" name="sexe" class="form-control">
                                     <option value="">-- Select --</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
-                            </div>
 
-                            <div class="form-group col-md-4">
-                                <label for="classe">Classe</label>
-                                <select name="classe" id="classe" name="classe" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="classe">Classe</label>
+                                    <select name="classe" id="classe" name="classe" class="form-control">
                                     <option value="">-- Select --</option>
                                     <option value="P1">P1</option>
                                     <option value="P2">P2</option>
@@ -37,18 +39,18 @@
                                     <option value="P5">P5</option>
                                     <option value="P6">P6</option>
                                 </select>
-                            </div>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="email">Email Parents</label>
-                                <input type="email" name="emailParents" id="email" placeholder="Email parent" class="form-control">
-                            </div>
-                            <div class="form-group mt-3">
-                                <button class="btn btn-primary" type="submit">Registration</button>
-                            </div>
+                                <div class="form-group">
+                                    <label for="email">Email Parents</label>
+                                    <input type="email" name="emailParents" value="<%= typeof emailParents != 'undefined' ? emailParents: '' %>" id="email" placeholder="Email parent" class="form-control">
+                                </div>
+                                <div class="form-group mt-3 col-md-12">
+                                    <button class="btn btn-primary" type="submit">Registration</button>
+                                </div>
 
 
-                        </form>
+                            </form>
                     </div>
                 </div>
             </div>

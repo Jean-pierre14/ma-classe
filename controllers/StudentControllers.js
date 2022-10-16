@@ -34,27 +34,40 @@ const postStudent = async(req, res) => {
     } = req.body
 
     // console.log(req.body);
+    let errors = []
 
     if (firstName === '' || firstName === undefined || name === '' || name === undefined || sexe === '' || sexe === undefined || classe === undefined || classe === '') {
 
-        res.status(500).json('Field in all inputs')
+        res.status(500)
+        errors.push({ msg: 'Field in all inputs fields' })
 
-    } else {
+        if (errors.length > 0) {
 
-        let email = emailParents;
+            res.render('./Registration/registration', {
+                errors,
+                firstName,
+                name,
+                sexe,
+                classe,
+                emailParents
+            });
 
-        const SaveStudent = Students.build({
-            firstName,
-            name,
-            sexe,
-            classe,
-            email
-        });
+        } else {
+            let email = emailParents;
 
-        await SaveStudent.save()
+            const SaveStudent = Students.build({
+                firstName,
+                name,
+                sexe,
+                classe,
+                email
+            });
+
+            await SaveStudent.save();
+
+            res.redirect('/eleves');
+        }
     }
-
-    res.redirect('/eleves');
 
 }
 

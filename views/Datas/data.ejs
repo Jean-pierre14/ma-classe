@@ -6,8 +6,9 @@
                 <div class="col-md-8">
                     <div class="card card-body shadow-sm">
                         <form action="" method="post">
-                            <input type="search" name="search" id="search" placeholder="Search..." class="form-control">
+                            <input type="search" name="search" id="searchText" placeholder="Search..." class="form-control">
                         </form>
+
                         <div id="results" class="mt-2">
                             <!-- APIs fetching here -->
                         </div>
@@ -23,12 +24,33 @@
 
             resutlDom.innerHTML = output;
 
+            SelectAll();
 
-            fetch('http://localhost:7000/students')
-                .then(res => res.json())
-                .then(data => {
+            let searchText = document.querySelector('#searchText')
+
+            searchText.onkeyup = (e) => {
+                let txt = e.target.value.trim();
+
+                if (txt != '') {
                     output = ''
-                    output += `
+
+                    output = txt;
+                    resutlDom.innerHTML = 'searching... ' + output;
+
+                } else {
+
+                    output = '';
+
+                    SelectAll();
+                }
+            }
+
+            function SelectAll() {
+                fetch('http://localhost:7000/students')
+                    .then(res => res.json())
+                    .then(data => {
+                        output = ''
+                        output += `
                         <table class="table table-stripe table-sm">
                             <thead>
                                 <tr>
@@ -41,8 +63,8 @@
                             </thead>
                             <tbody>
                         `
-                    data.forEach(item => {
-                        output += `
+                        data.forEach(item => {
+                            output += `
                         <tr>
                             <td>${item.firstName}</td>    
                             <td>${item.name}</td>    
@@ -56,15 +78,16 @@
                             </td>    
                         </tr>
                         `
-                    });
-                    output += `
+                        });
+                        output += `
                         </tbody>
                     </table>`
-                    resutlDom.innerHTML = output;
-                })
-                .catch(err => {
-                    resutlDom.innerHTML = `<p class="alert alert-warning">The network is down</p>`
-                })
+                        resutlDom.innerHTML = output;
+                    })
+                    .catch(err => {
+                        resutlDom.innerHTML = `<p class="alert alert-warning">The network is down</p>`
+                    });
+            }
         </script>
 
         <%- include('../footer')%>
