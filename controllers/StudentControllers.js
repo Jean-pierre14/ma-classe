@@ -54,7 +54,7 @@ const postStudent = async(req, res) => {
         await SaveStudent.save()
     }
 
-    res.redirect('/eleve');
+    res.redirect('/eleves');
 
 }
 

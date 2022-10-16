@@ -8,8 +8,9 @@
                         <form action="" method="post">
                             <input type="search" name="search" id="search" placeholder="Search..." class="form-control">
                         </form>
-                        <h3>APIs...</h3>
-                        <div id="results"></div>
+                        <div id="results" class="mt-2">
+                            <!-- APIs fetching here -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -18,12 +19,15 @@
         <script>
             let resutlDom = document.querySelector('#results');
 
-            let output = '';
+            let output = 'Loading...';
+
+            resutlDom.innerHTML = output;
 
 
             fetch('http://localhost:7000/students')
                 .then(res => res.json())
                 .then(data => {
+                    output = ''
                     output += `
                         <table class="table table-stripe table-sm">
                             <thead>
@@ -40,13 +44,23 @@
                     data.forEach(item => {
                         output += `
                         <tr>
-                            <td></td>    
+                            <td>${item.firstName}</td>    
+                            <td>${item.name}</td>    
+                            <td>${item.classe}</td>    
+                            <td>${item.sexe}</td>    
+                            <td>
+                                <div class="btn-group">
+                                    <a href="/eleve/edit/${item.id}" class="btn btn-sm btn-info">Edit</a>
+                                    <a href="/eleve/delete/${item.id}" class="btn btn-sm btn-danger">Danger</a>
+                                </div>
+                            </td>    
                         </tr>
                         `
                     });
                     output += `
                         </tbody>
                     </table>`
+                    resutlDom.innerHTML = output;
                 })
                 .catch(err => {
                     resutlDom.innerHTML = `<p class="alert alert-warning">The network is down</p>`
