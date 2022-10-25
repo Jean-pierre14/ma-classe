@@ -19,7 +19,7 @@ const getStudent = async(req, res) => {
 
     const student = await Students.findOne({ where: { id: Id } });
 
-    res.json(student);
+    res.render('edit', { student })
 
 }
 
@@ -38,35 +38,21 @@ const postStudent = async(req, res) => {
 
     if (firstName === '' || firstName === undefined || name === '' || name === undefined || sexe === '' || sexe === undefined || classe === undefined || classe === '') {
 
-        res.status(500)
         errors.push({ msg: 'Field in all inputs fields' })
 
-        if (errors.length > 0) {
 
-            res.render('./Registration/registration', {
-                errors,
-                firstName,
-                name,
-                sexe,
-                classe,
-                emailParents
-            });
+    } else {
+        const SaveStudent = Students.build({
+            firstName,
+            name,
+            sexe,
+            classe,
+            emailParents
+        });
 
-        } else {
-            let email = emailParents;
+        await SaveStudent.save();
 
-            const SaveStudent = Students.build({
-                firstName,
-                name,
-                sexe,
-                classe,
-                email
-            });
-
-            await SaveStudent.save();
-
-            res.redirect('/eleves');
-        }
+        res.redirect('/eleves');
     }
 
 }

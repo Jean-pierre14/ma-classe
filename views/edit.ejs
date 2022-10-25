@@ -1,0 +1,82 @@
+<%- include('./header')%>
+    <%- include('./Navbar/navbar')%>
+
+        <div class="container m-auto">
+            <div class="row justify-content-center my-3">
+                <div class="col-md-4">
+                    <div class="card card-body shadow-sm py-2">
+                        <p class="d-flex justify-content-between align-items-center flex-wrap">
+                            <span><a href="/eleves" class="btn btn-sm btn-danger">Back</a></span>
+                            <span><%= student.name%></span>
+                        </p>
+                        <div class="list-group list-group-flush">
+                            <p class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-wrap">
+                                <span>Name: </span>
+                                <span><%= student.name%></span>
+                            </p>
+                            <p class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-wrap">
+                                <span>First name: </span>
+                                <span><%= student.firstName%></span>
+                            </p>
+                            <p class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-wrap">
+                                <span>Sex: </span>
+                                <span><%= student.sexe%></span>
+                            </p>
+                            <p class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-wrap">
+                                <span>Class: </span>
+                                <span><%= student.classe%></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-body shadow-sm">
+                        <h2 class="alert alert-warning">Editing</h2>
+                        <form action="/students" method="post" class="form-row justify-content-center">
+                            <div class="form-group col-md-6">
+                                <label for="fname">First name</label>
+                                <input type="text" name="firstName" id="fname" value="<%= student.firstName%>" placeholder="First name" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" value="<%= student.name%>" placeholder="Name" id="name" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="sexe">Sexe</label>
+                                <select name="sexe" id="sex" name="sexe" class="form-control">
+                                <option value="">-- Select --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="classe">Classe</label>
+                                <select name="classe" id="classe" name="classe" class="form-control">
+                                <option value="">-- Select --</option>
+                                <option value="P1">P1</option>
+                                <option value="P2">P2</option>
+                                <option value="P3">P3</option>
+                                <option value="P4">P4</option>
+                                <option value="P5">P5</option>
+                                <option value="P6">P6</option>
+                            </select>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="email">Email Parents</label>
+                                <input type="email" name="emailParents" value="<%= student.emailParents%>" id="email" placeholder="Email parent" class="form-control">
+                            </div>
+                            <div class="form-group mt-3 col-md-12">
+                                <button class="btn btn-warning" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('./footer')%>

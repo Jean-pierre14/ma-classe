@@ -3,6 +3,22 @@
 
         <div class="container m-auto">
             <div class="row justify-content-center my-3">
+                <div class="col-md-4">
+                    <div class="card card-body shadow-sm">
+                        <div class="my-2 d-flex wrap-text justify-content-between align-items-center">
+                            <span>Students:</span>
+                            <span class="badge badge-primary">2345</span>
+                        </div>
+                        <div class="my-2 d-flex wrap-text justify-content-between align-items-center">
+                            <span>Boys:</span>
+                            <span class="badge badge-primary">200</span>
+                        </div>
+                        <div class="my-2 d-flex wrap-text justify-content-between align-items-center">
+                            <span>Girls:</span>
+                            <span class="badge badge-primary">24</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-8">
                     <div class="card card-body shadow-sm">
                         <form action="" method="post">
@@ -31,7 +47,7 @@
             searchText.onkeyup = (e) => {
                 let txt = e.target.value.trim();
 
-                if (txt != '') {
+                if (txt !== '' || txt === undefined) {
                     output = ''
 
                     output = txt;
@@ -72,8 +88,8 @@
                             <td>${item.sexe}</td>    
                             <td>
                                 <div class="btn-group">
-                                    <a href="/eleve/edit/${item.id}" class="btn btn-sm btn-info">Edit</a>
-                                    <a href="/eleve/delete/${item.id}" class="btn btn-sm btn-danger">Danger</a>
+                                    <a href="/students/${item.id}" class="btn btn-sm btn-info">Edit</a>
+                                    <a href="/students/${item.id}" class="btn btn-sm btn-danger">Delete</a>
                                 </div>
                             </td>    
                         </tr>
