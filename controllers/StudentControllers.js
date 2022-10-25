@@ -1,5 +1,6 @@
 // DB connection
 const db = require('../config/database'),
+    Op = require('sequelize'),
     Students = require('../models/Students');
 
 /**
@@ -11,6 +12,20 @@ const db = require('../config/database'),
 const getStudents = async(req, res) => {
     const AllStudents = await Students.findAll();
     res.json(AllStudents);
+}
+
+/**
+ * Searching student endpoint
+ * @param {localhost:7000/students/search} req 
+ * @param {get method} res
+ * 
+ */
+
+const searchStudent = async(req, res) => {
+    let searchText = req.body.txt;
+    const searchData = await Students.findAll({ where: { firstName: searchText } })
+
+    res.json(searchData)
 }
 
 const getStudent = async(req, res) => {
@@ -57,6 +72,8 @@ const postStudent = async(req, res) => {
 
 }
 
+
+
 const updateStudent = (req, res) => {
 
     res.send('Update Student');
@@ -74,6 +91,7 @@ const deleteAllStudents = (req, res) => {
 module.exports = {
     getStudents,
     getStudent,
+    searchStudent,
     postStudent,
     updateStudent,
     deleteStudent,

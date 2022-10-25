@@ -40,7 +40,15 @@
 
             resutlDom.innerHTML = output;
 
-            SelectAll();
+            const Init = async() => {
+                await SelectAll()
+                    .then(_ => {
+                        searchFunction();
+                    })
+                    .catch(e => {
+                        resutlDom.innerHTML = `<div class="alert alert-danger">You're not connected</div>`
+                    })
+            }
 
             let searchText = document.querySelector('#searchText')
 
@@ -51,7 +59,35 @@
                     output = ''
 
                     output = txt;
-                    resutlDom.innerHTML = 'searching... ' + output;
+                    resutlDom.innerHTML = `searching: ${txt}`;
+
+                    fetch('http://localhost:7000/students/search=' + txt)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.length > 0) {
+                                data.forEach(item => {
+                                    output += `
+                                    <tr>
+                                        <td>${item.firstName}</td>    
+                                        <td>${item.name}</td>    
+                                        <td>${item.classe}</td>    
+                                        <td>${item.sexe}</td>    
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="/students/${item.id}" class="btn btn-sm btn-info">Edit</a>
+                                                <a href="/students/${item.id}" class="btn btn-sm btn-danger">Delete</a>
+                                            </div>
+                                        </td>    
+                                    </tr>
+                                    `
+                                })
+                            } else {
+                                resutlDom.innerHTML = `<p class="alert alert-danger">Data not found</p>`
+                            }
+                        })
+                        .catch(err => {
+                            resutlDom.innerHTML = `<p class="alert alert-danger">The network is not working...</p>`
+                        })
 
                 } else {
 
@@ -104,6 +140,8 @@
                         resutlDom.innerHTML = `<p class="alert alert-warning">The network is down</p>`
                     });
             }
+
+            Init();
         </script>
 
         <%- include('../footer')%>
