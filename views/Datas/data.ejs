@@ -53,18 +53,18 @@
             let searchText = document.querySelector('#searchText')
 
             searchText.onkeyup = (e) => {
+                e.preventDefault(e);
+
                 let txt = e.target.value.trim();
 
                 if (txt !== '' || txt === undefined) {
-                    output = ''
-
-                    output = txt;
-                    resutlDom.innerHTML = `searching: ${txt}`;
+                    output = 'Loading...'
 
                     fetch('http://localhost:7000/students/search=' + txt)
                         .then(res => res.json())
                         .then(data => {
                             if (data.length > 0) {
+                                output = '';
                                 data.forEach(item => {
                                     output += `
                                     <tr>

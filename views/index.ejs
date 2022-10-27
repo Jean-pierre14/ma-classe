@@ -5,17 +5,33 @@
         <div class="container m-auto py-3">
             <div class="row justify-content-center">
                 <div class="col-md-8">
+
                     <div class="card card-body shadow-sm">
+
                         <h2>Dashboard</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis impedit, a beatae architecto maxime autem molestias laborum mollitia harum qui deleniti minus magnam ratione ipsum quidem similique dolores odit veritatis sunt. Nobis beatae magnam totam
-                            error maxime facere odio incidunt quaerat tempora, commodi quia velit, libero suscipit ipsa, quisquam laboriosam ad voluptatibus ipsam? Similique in quo eius cum dolorem! Sit deserunt asperiores maiores doloremque earum expedita
-                            saepe dolorem repellendus cumque magnam itaque delectus soluta praesentium exercitationem corrupti rem qui totam repellat sunt eaque illum, veritatis ipsum beatae nam! Dolorum maxime magnam aliquid praesentium placeat possimus,
-                            veritatis et at ipsam eveniet saepe aliquam iusto repellat quisquam quis numquam error beatae quod unde blanditiis. Cupiditate, perspiciatis ab, molestiae placeat quidem et quam non fugit iusto neque modi vel? Temporibus hic
-                            dolorem, vel ipsum qui laudantium amet, ipsam voluptatibus debitis in voluptates quisquam explicabo consequuntur quae doloribus laboriosam adipisci porro expedita! Suscipit ratione perferendis natus eligendi repudiandae molestias
-                            dolore omnis debitis aliquam nesciunt est dolores tempore, illum, et modi vitae dolorum alias sit labore! Incidunt velit maiores eum cumque iure reprehenderit ut, natus cum rem accusantium aut, provident vero magni non dicta
-                            voluptatum, doloremque esse quis exercitationem veniam culpa ad distinctio. Nihil, nobis?
-                        </p>
+                        <form action="/search" class="my-2">
+                            <div class="input-group mb-3 input-group-lg">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="input-group-text">Search</button>
+                                </div>
+                                <input type="search" id="search" name="search" placeholder="Searching..." value="" class="form-control">
+                            </div>
+                        </form>
+                        <% if(typeof data != 'undefined'){%>
+                            <% data.forEach(function(student){%>
+                                <a href="/student/<%= student.id%>" class="text-decoration-none list-group-item-actions my-1 shadow-sm border-3x p-3 d-flex justify-content-between align-items-center flex-wrap">
+                                    <span><%= student.name %></span>
+                                    <span><%= student.firstName %></span>
+                                    <span><%= student.classe %></span>
+                                </a>
+                                <%})%>
+                                    <%} else{%>
+                                        <p>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod deleniti minima earum placeat. Harum perspiciatis fugit, ut pariatur deserunt labore, amet magni, modi ex nemo numquam unde nam quasi sint sed obcaecati dignissimos voluptate eaque. Laboriosam
+                                            et nulla facere nam aut aperiam totam. Asperiores assumenda obcaecati voluptates aut delectus! Qui animi illum beatae distinctio aspernatur, esse perferendis voluptates officia dolores nam quod atque accusamus
+                                            eligendi quidem est dignissimos deleniti inventore provident fuga sint ipsum recusandae nemo. Alias nam dolorum ullam enim ad unde quibusdam eveniet, aspernatur ducimus, laudantium explicabo ut?
+                                        </p>
+                                        <%}%>
                     </div>
                 </div>
             </div>

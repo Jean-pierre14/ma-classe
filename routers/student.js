@@ -20,6 +20,6 @@ router.route('/:id').get(getStudent).put(updateStudent).delete(deleteStudent);
  * Search Event
  */
 
-router.route('/:search').get(searchStudent)
+router.route('/search').get(searchStudent)
 
 module.exports = router;

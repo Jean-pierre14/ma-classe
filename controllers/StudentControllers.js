@@ -22,10 +22,13 @@ const getStudents = async(req, res) => {
  */
 
 const searchStudent = async(req, res) => {
-    let searchText = req.body.txt;
-    const searchData = await Students.findAll({ where: { firstName: searchText } })
 
-    res.json(searchData)
+    let { searchText } = req.query;
+
+    const searchData = await Students.findAll({ where: {
+            [Op.like]: { firstName: '%' + searchText + '%' } } })
+
+    res.json(searchData);
 }
 
 const getStudent = async(req, res) => {

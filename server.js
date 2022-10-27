@@ -1,3 +1,5 @@
+const { render } = require('ejs');
+
 const exp = require('express'),
     { success, error } = require('consola'),
     dotenv = require('dotenv').config(),
@@ -5,7 +7,8 @@ const exp = require('express'),
     flash = require('connect-flash'),
     cors = require('cors'),
     app = exp(),
-    { db, DataTypes } = require('./config/database'),
+    { db, DataTypes, Op } = require('./config/database'),
+    Students = require('./models/Students'),
     PORT = process.env.PORT || 8000;
 
 // DB connection
@@ -59,6 +62,45 @@ app.use('/', require('./routers/viewsRouter'));
  */
 
 app.use('/students', require('./routers/student'));
+
+// Search
+app.get('/search', async(req, res) => {
+
+    let { search } = req.query
+
+
+
+    let txt = search.trim
+
+
+    if (txt != '' || txt != 'undefined') {
+        const optionSearch = {
+            [Op.like]: `%${txt}%`
+        }
+        await Students.findAll({
+                where: {
+                    [Op.or]: {
+                        firstName: optionSearch,
+                        name: optionSearch
+                    }
+                }
+            })
+            .then(data => {
+                res.render('index', { data })
+            })
+            .catch(e => {
+                let error = 'There is a problem';
+
+                res.render('index', { error })
+
+                console.log(e)
+
+            })
+    } else {
+        res.render('index')
+    }
+
+})
 
 // Server Settings
 app.listen(PORT, (err) => {
