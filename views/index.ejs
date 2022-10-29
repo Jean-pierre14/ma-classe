@@ -38,3 +38,14 @@
         </div>
 
         <%- include('./footer')%>
+
+            <script>
+                const searchBtn = document.querySelector('#search')
+
+                searchBtn.onkeyup = (e) => {
+                    let text = e.target.value
+                    fetch('http://localhost:7000/search?search=' + text)
+                        .then(res => console.log("Searching: " + res))
+                        .catch(e => console.log(e))
+                }
+            </script>

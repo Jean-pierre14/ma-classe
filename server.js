@@ -102,6 +102,47 @@ app.get('/search', async(req, res) => {
 
 })
 
+
+// Login
+
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+app.post('/login', (req, res) => {
+    const { username, password } = req.body
+
+    if (!username || !password) {
+
+        let errors = [];
+        errors.push({ msg: 'Empty fields' });
+        res.render('login', { errors })
+
+    } else {
+
+        Students.findOne({
+                where: {
+                    [Op.and]: { firstName: username, name: password }
+                }
+            })
+            .then(data => {
+
+                res.render('welcome', { data })
+
+                console.log(data)
+
+            })
+            .catch(err => {
+
+                res.send(err.message);
+
+                console.log(err.message);
+
+            })
+
+    }
+})
+
 // Server Settings
 app.listen(PORT, (err) => {
     if (err) error({ message: `Error ${err.message}`, badge: true })
